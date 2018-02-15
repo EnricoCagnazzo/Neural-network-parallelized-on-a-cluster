@@ -1,0 +1,17 @@
+#!/bin/bash
+
+rm /mnt/raid/redNeuronalSequencial/weights/*
+
+/mnt/raid/redNeuronalSequencial/compiled/createWeightInHidd
+/mnt/raid/redNeuronalSequencial/compiled/createWeightHiddOut
+rm /mnt/raid/redNeuronalSequencial/results
+
+echo 2 $(date "+%H%M%S") > /mnt/raid/redNeuronalSequencial/results
+
+for dataset in {0..99}; do
+	for class in {0..3}; do
+		ssh dataclus1 "/mnt/raid/redNeuronalSequencial/scripts/firstStep /mnt/raid/redNeuronalParalela/dataset/$dataset'_'$class" &
+	done
+done
+
+

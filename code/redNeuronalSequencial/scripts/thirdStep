@@ -1,0 +1,5 @@
+#! /bin/bash
+
+/mnt/raid/redNeuronalSequencial/compiled/computeOutputLayer $1
+fileName=$1O
+/mnt/raid/redNeuronalSequencial/scripts/verifyAndBackPropagation $fileName

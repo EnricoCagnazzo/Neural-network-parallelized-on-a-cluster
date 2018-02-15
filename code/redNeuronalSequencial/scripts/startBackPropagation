@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/mnt/raid/redNeuronalSequencial/compiled/backPropagationOutHidd $1
+ssh dataclus1 "/mnt/raid/redNeuronalSequencial/compiled/backPropagationHiddIn $1 " &

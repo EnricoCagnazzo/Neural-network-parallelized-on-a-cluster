@@ -1,0 +1,20 @@
+#!/bin/bash
+
+start=0
+finish=0
+
+while read value ; do
+	if [ $start -eq 0 ] ; then
+		start=$(echo $value | cut -d' ' -f2 )
+	else
+		finish=$(echo $value | cut -d' ' -f2 )
+	fi
+done </mnt/raid/redNeuronalSequencial/results
+
+date -u -d "0 $finish seconds - $start seconds" +"%H:%M:%S"
+
+echo
+
+cat /mnt/raid/redNeuronalSequencial/results | cut -d' ' -f1 | grep 0 | wc -l
+cat /mnt/raid/redNeuronalSequencial/results | cut -d' ' -f1 | grep 1 | wc -l
+

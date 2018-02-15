@@ -1,0 +1,42 @@
+#! /bin/bash
+
+#get the dataset number (0-99)
+
+numberInDataset=$( echo $1 | cut -d"/" -f6 | cut -d"_" -f1 )
+
+#get the correct class (0-3)
+
+expectedClass=$( echo $1 | cut -d'_' -f2  | cut -d'D' -f1 )
+
+#get the result
+
+class=0
+max=-10
+i=0
+
+while read value ; do
+ 	if (( $(echo "$value > $max" | bc -l ) )) ; then
+		class=$i
+		max=$value
+#		echo $i $class
+	fi
+	i=$(($i+1))
+#	echo $class
+done <$1
+
+#echo class:$class max:$max
+
+#write in a file (append) if the class is correct (1) or if not (0)
+
+if [ $class -eq $expectedClass ] ; then
+	echo 1 $(date "+%H%M%S") >> /mnt/raid/redNeuronalSequencial/results
+
+else
+	echo 0 $(date "+%H%M%S") >> /mnt/raid/redNeuronalSequencial/results
+fi
+
+#check if the backPropagation must be started (number in dataset < 75 )
+
+if [ $numberInDataset -lt 0 ] ; then
+	/mnt/raid/redNeuronalSequencial/scripts/startBackPropagation $1
+fi

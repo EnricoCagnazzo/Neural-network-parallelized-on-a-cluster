@@ -1,0 +1,5 @@
+#! /bin/bash
+
+/mnt/raid/redNeuronalParalela/compiled/computeHiddenLayer $1
+fileName=$1'H'
+ssh dataclus4 "/mnt/raid/redNeuronalParalela/scripts/thirdStep $fileName" &

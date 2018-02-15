@@ -1,0 +1,5 @@
+#! /bin/bash
+
+/mnt/raid/redNeuronalSequencial/compiled/increaseDimension $1
+fileName=$1D
+ssh dataclus1 "/mnt/raid/redNeuronalSequencial/scripts/secondStep $fileName" &

@@ -1,0 +1,6 @@
+#! /bin/bash
+
+/mnt/raid/redNeuronalParalela/compiled/increaseDimension $1
+fileName=$1D
+sleep 0.1
+ssh dataclus3 "/mnt/raid/redNeuronalParalela/scripts/secondStep $fileName" &
